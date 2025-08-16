@@ -1,72 +1,57 @@
-# PokePad
-PokeDex simple
+# Pokedex (Pokemon catalog) in Python
 
-Para la ejecución de este software primeramente se deberá dar doble click sobre el archivo “principal.pyw” lo que abrirá la ventana
-principal del programa
+This project is a Pokemon catalog using the Pokemon API developed in Python. The goal of this project is to learn about `Tkinter` (Python's UI library), API consumption, binary files and XML.
 
-La primera vez que se ejecute el programa solo se tendrá habilitada la opción de buscar. Para realizar una búsqueda se deberá ingresar 
-la cantidad de pokémones que se desean buscar en la caja de texto que aparece al lado de “¿Cuántos desea buscar?”. Aquí solo podrá 
-ingresar un número entre 1 y 1000. 
- 
-Una vez ingresada la cantidad se procede a dar en el botón “Buscar”, la búsqueda puede tardar un poco dependiendo la velocidad de su 
-conexión a internet. Una vez realizada la búsqueda los botones donde dice “Pokemon 1”, “Pokemon 2”, “Pokemon 3”,  en la columna de “ID” 
-se mostrará el ID del pokémon adyacente, cambiarán su nombre al nombre del pokémon y se habilitarán junto con los botones de “Guardar 
-en Binario” y “Guardar en XML”; Además, dependiendo del tamaño de la búsqueda se habilitará el botón de “Siguiente”.
- 
-Una vez llegado este punto podrá realizar diferentes acciones, empezando por la más básica, al hacer click en el botón de “Siguiente” 
-éste cambiará de página, se mostrarán los tres pokémones siguientes y se habilitará el botón de “Atrás”. Esta acción la podrá repetir 
-mientras queden pokémones por mostrar. Si la cantidad de pokémones buscada no es un múltiplo de tres, en la última página se mostrará 
-en la columna de “ID” una o dos filas vacías; además de una o dos filas de botones inhabilitadas, correspondientes a los pokémones 
-faltantes para llegar al próximo múltiplo de tres.
- 
-Una vez visto como cambiar a la siguiente página procederemos a mostrar el proceso inverso, regresar las páginas. Para realizar esto se 
-necesita presionar sobre el botón de “Atrás”, donde se habilitará el botón de “Siguiente” y se mostrarán los tres pokémones anteriores.
- 
-Como tal vez esté buscando algo más específico, procederemos a mostrar cómo filtrar los resultados adquiridos. En primer lugar, se tiene
-que accionar el botón “Filtrar”, lo cual desplegará una ventana de diálogo donde se preguntará sobre el tipo de filtrado que desea 
-realizar donde tendrá dos opciones filtrado por rango o filtrado por aproximación.
- 
-Empezaremos con el filtrado por rango. En primer lugar se hará click sobre el botón “Filtrado por rango”, lo que abrirá una ventana 
-donde le pedirá el valor mínimo y máximo del rango en el que se deberá buscar.
- 
-En el cuadro de texto de “Ingrese el peso mínimo: ” deberá ingresar el valor mínimo del rango en el que se buscará y en el cuadro de 
-“Ingrese el peso máximo: ” se debe ingresar el valor máximo de este rango. Aquí solo se puede poner valores numéricos y el mínimo no 
-debe ser mayor que el máximo.
- 
-Una vez ingresada la información se procede a presionar el botón “¡Listo!” para realizar el filtrado. Al presionar el botón en la 
-ventana principal se mostrarán los pokémones en este rango, junto con su ID y su peso. Igualmente se conserva el “Guardar en Binario” y 
-“Guardar en XML”; además del cambio de página.
- 
-Seguidamente, se retomará desde la ventana donde se pregunta el tipo de filtrado a realizar para mostrar el uso filtrado por aproximación
-, por lo que se deberá presionar en el botón “Por aproximación”. Al presionar el botón se desplegará un cuadro de diálogo donde le 
-pedirá el nombre del pokémon a buscar.
- 
-Una vez escrito el término a buscar se debe presionar el botón “Aceptar”. Esto lo devolverá a la ventana principal y mostrará los 
-resultados encontrados.
- 
-Ahora se procederá a mostrar cómo ver más información de un pokémon. Para esto bastará con dar click sobre el botón que tiene el nombre 
-del pokémon del cual desea ver más información. Esto abrirá una ventana que posee una imagen del pokémon, su nombre, su peso y su 
-estatura.
- 
-Para cerrar esta ventana basta con presionar en el botón “Regresar”. Lo siguiente será como guardar un pokémon como favorito, para esto
-deberá presionar el botón “Guardar en Binario” que está a la par del pokémon que sea guardar. Esto ocasionará que cambie la cuenta de 
-“Mis pokémones” y se habilite el botón de “Ver mis pokémones”. El pokémon se guardará en el archivo “mis Pokémones”.
- 
-Para ver los pokémones guardados, deberá presionar el botón “Ver mis pokémones”, lo cual desplegará una ventana donde se mostrar una 
-imagen, nombre, peso y estatura de un pokémon.
- 
-Si tiene más de un pokémon guardado el botón de siguiente estará habilitado y funcionará exactamente igual que como se mostró en la 
-ventana principal.
- 
-Para cerrar la ventana solo basta con hacer click en el botón “Regresar”.
- 
-Finalmente, se explicará la manera de guarda pokémones con formato XML para su posterior envío por correo. En primer lugar se hace click
-sobre el botón “Guardar en XML” del pokémon a guardar. Esto desplegará una ventana emergente donde se le pedirá un usuario de gmail y 
-una contraseña.
- 
-Aquí deberá poner su dirección de correo y su contraseña (la cual quedará oculta), para el envío del XML.
- 
-Una vez ingresado el correo y la contraseña debe presionar “Enviar XML” para recibir el correo con el XML. Esto abrirá una ventana con 
-un mensaje de confirmación o de error.
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [Requirements](#requirements)
+4. [How to Run](#how-to-run)
+5. [Usage](#usage)
 
-Ahora deberá presionar en aceptar, y ya habrá recibido el correo con el XML.
+## Project Overview
+
+The Pokedex requests up to 1000 pokemons from the `Pokemon API` and lets the user to search for pokemons, save favourite pokemons, see the pokemon's characteristics, and export pokemons to binary data or XML. The project uses `Tkinter` to create a GUI that the user can easily navigate. 
+
+## Features
+
+- **Look up to 1000 Pokemons**: Allows the user to select how many Pokemons to search for, with a limit of 1000.
+- **Paginated List**: Displays the ID, name and optionally weight of 3 pokemons at a time with the option to go to the next and previous page.
+- **Binary Export**: Allows the user to export the current application state to a binary file, to save API requests and favourite pokemons.
+- **XML Export**: Sends the information of a single pokemon via email.
+- **Weight Range Filter**: Reduces the list of pokemons to only a designated range of weights.
+- **Name Aproximation Filter**: Looks for pokemons whose names are phonetically similar to the given input.
+- **Pokemon profiles**: Allows the user to see the name, weight, height and an image of a single pokemon.
+- **Favourite Pokemons**: Saves a pokemon into a favourite list for quick access.
+- **Graphic User Interface**: Displays visually all the information and navigation of the application.
+- **Uses the Pokemon API**: Gets all the pokemons' information from an external database.
+
+## Requirements
+
+- **Run everywhere with Python**: The project can run on any platform as long as it has a Python interpreter installed.
+- **Use the Pokemon API**: Retrieve the pokemons' information from the `Pokemon REST API`.
+- **Send Emails**: Use the `SMTP` protocol to send emails.
+- **Graphic User Interface**: Use `Tkinter` to create a visual interface.
+
+## How to Run
+
+### Step 1: Clone the repository
+
+``` bash
+git clone https://github.com/abzave/PokePad.git
+cd PokePad
+```
+
+### Step 2: Run the program
+
+Open the file `principal.pyw`
+
+## Usage
+
+1. The first time the application is opened the user will be prompted to enter the amount of pokemons to request. This number must not be greater the 1000.
+2. Look for the desired pokemon in the list by navigating with the `next` and `previous` buttons, or by applying a filter.
+    -  Filter by range: Enter the minimum and maximum weight that the pokemon must have to be considered in the search.
+    -  Filter by aproximation: Enter the name or aproximate name of the pokemon you are looking for, it will search for phonetically similar names.
+3. Click on the name of the pokemon you want to see in order to open the profile containing the name, weight, height and image.
+4. To save a favourite pokemon click on the `Save to binary` button. The pokemon will be added to the section called `My pokemons` where the user can see all the saved pokemons.
+5. To get the information of a pokemon into the user's email click the `Save to XML` button, then the user will be prompted to login into their email.
